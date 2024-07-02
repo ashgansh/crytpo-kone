@@ -6,7 +6,7 @@ const MinimalistFinanceDashboard = () => {
   return (
     <div className="container mx-auto">
     <div className="text-gray-800 p-6 font-sans">
-      <Card className="mb-8 border-2 border-gray-300 mb-6">
+      <Card >
         <div className="p-6">
           <h2 className="text-2xl font-semibold mb-4">Account Overview</h2>
           <div className="flex justify-between items-end">
@@ -25,7 +25,7 @@ const MinimalistFinanceDashboard = () => {
       </Card>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-        <Card className="border-2 border-gray-300">
+        <Card >
           <div className="border-b-2 border-gray-300 p-4 flex justify-between items-center bg-purple-50">
             <h3 className="text-lg font-semibold">Gnosis Pay Visa</h3>
             <span className="text-2xl">💳</span>
@@ -40,7 +40,7 @@ const MinimalistFinanceDashboard = () => {
           </button>
         </Card>
 
-        <Card className="border-2 border-gray-300">
+        <Card >
           <div className="border-b-2 border-gray-300 p-4 flex justify-between items-center bg-green-50">
             <h3 className="text-lg font-semibold">Earn Yield with sDAI</h3>
             <span className="text-2xl">📈</span>
@@ -56,7 +56,7 @@ const MinimalistFinanceDashboard = () => {
           </button>
         </Card>
 
-        <Card className="border-2 border-gray-300 mt-4">
+        <Card >
           <div className="border-b-2 border-gray-300 p-4 flex justify-between items-center bg-blue-50">
             <h3 className="text-lg font-semibold">IBAN Account</h3>
             <span className="text-2xl">🏦</span>
@@ -75,7 +75,7 @@ const MinimalistFinanceDashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <Card className="border-2 border-gray-300">
+        <Card >
           <div className="border-b-2 border-gray-300 p-4 flex justify-between items-center bg-orange-50">
             <h3 className="text-lg font-semibold">IBAN Transfers</h3>
             <span className="text-2xl">↗️</span>
@@ -117,7 +117,7 @@ const MinimalistFinanceDashboard = () => {
           </div>
         </Card>
 
-        <Card className="border-2 border-gray-300">
+        <Card >
           <div className="border-b-2 border-gray-300 p-4 flex justify-between items-center bg-indigo-50">
             <h3 className="text-lg font-semibold">Transactions</h3>
             <button className="text-sm underline">View All</button>

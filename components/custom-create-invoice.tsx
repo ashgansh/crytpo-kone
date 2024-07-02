@@ -37,7 +37,7 @@ const CustomCreateInvoice = () => {
             currency: {
               type: currency.type,
               value: currency.address,
-              network: currency.network,
+              network: currency.network as any,
             },
             expectedAmount: amountInSmallestUnit,
             payee: {

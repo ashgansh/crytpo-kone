@@ -17,7 +17,7 @@ const Context = createContext<ContextType | undefined>(undefined);
 export const Provider = ({ children }: { children: ReactNode }) => {
   const [{ wallet }] = useConnectWallet();
   const [requestNetwork, setRequestNetwork] = useState<RequestNetwork | null>(null);
-  const [currencyManager] = useState(() => new CurrencyManager(currencies));
+  const [currencyManager] = useState(() => new CurrencyManager(currencies as any));
 
   useEffect(() => {
     if (wallet) {
