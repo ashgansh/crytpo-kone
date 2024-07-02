@@ -40,7 +40,7 @@ const InvoiceSection = () => {
 
   return (
     <div className="text-gray-800 p-6 font-sans">
-      <Card className="mb-8">
+      {/* <Card className="mb-8">
         <div className="p-6">
           <h2 className="text-2xl font-semibold mb-4">Account Overview</h2>
           <div className="flex justify-between items-end">
@@ -56,7 +56,7 @@ const InvoiceSection = () => {
             </div>
           </div>
         </div>
-      </Card>
+      </Card> */}
       {/* <Card className="mb-8">
         <div className="border-b-2 border-gray-300 p-4 flex justify-between items-center bg-blue-50">
           <h3 className="text-lg font-semibold">Latest Invoices</h3>

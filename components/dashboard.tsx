@@ -4,10 +4,9 @@ import { formatUnits } from "viem";
 import { Button, Dropdown } from "@/components/common";
 import { truncateAddress } from "@/utils/walletUtils";
 import { Types } from "@requestnetwork/request-client.js";
-import { CurrencyManager } from "@requestnetwork/currency";
 
 const InvoiceDashboard = () => {
-  const { wallet, requestNetwork } = useAppContext();
+  const { wallet, requestNetwork, currencyManager } = useAppContext();
   const [requests, setRequests] = useState<Types.IRequestDataWithEvents[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentTab, setCurrentTab] = useState("All");
@@ -16,8 +15,6 @@ const InvoiceDashboard = () => {
   const [sortColumn, setSortColumn] = useState("timestamp");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
-
-  const currencyManager = new CurrencyManager();
 
   useEffect(() => {
     if (wallet && requestNetwork) {
@@ -30,7 +27,7 @@ const InvoiceDashboard = () => {
       setLoading(true);
       const requestsData = await requestNetwork?.fromIdentity({
         type: Types.Identity.TYPE.ETHEREUM_ADDRESS,
-        value: wallet.accounts[0].address,
+        value: wallet?.accounts[0].address,
       });
       setRequests(requestsData?.map((request) => request.getData()) || []);
       setLoading(false);
@@ -93,121 +90,124 @@ const InvoiceDashboard = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="mb-4 flex justify-between items-center">
-        <div>
+    <div className="container mx-auto p-6">
+      <div className="mb-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="flex space-x-2">
           <Button
             text="All"
             onClick={() => setCurrentTab("All")}
-            className={
-              currentTab === "All" ? "bg-green" : "bg-gray-200 text-gray-800"
-            }
+            className={`px-4 py-2 rounded-md ${
+              currentTab === "All" ? "bg-green-500 text-white" : "bg-gray-200 text-gray-800"
+            }`}
           />
           <Button
             text="Pay"
             onClick={() => setCurrentTab("Pay")}
-            className={
-              currentTab === "Pay" ? "bg-green" : "bg-gray-200 text-gray-800"
-            }
+            className={`px-4 py-2 rounded-md ${
+              currentTab === "Pay" ? "bg-green-500 text-white" : "bg-gray-200 text-gray-800"
+            }`}
           />
           <Button
             text="Get Paid"
             onClick={() => setCurrentTab("Get Paid")}
-            className={
-              currentTab === "Get Paid"
-                ? "bg-green"
-                : "bg-gray-200 text-gray-800"
-            }
+            className={`px-4 py-2 rounded-md ${
+              currentTab === "Get Paid" ? "bg-green-500 text-white" : "bg-gray-200 text-gray-800"
+            }`}
           />
         </div>
         <input
           type="text"
           placeholder="Search..."
-          className="border p-2 rounded"
+          className="border p-2 rounded-md w-full sm:w-auto"
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
 
       {loading ? (
-        <p>Loading...</p>
+        <div className="flex justify-center items-center h-64">
+          <p className="text-xl">Loading...</p>
+        </div>
       ) : (
         <>
-          <table className="min-w-full bg-white">
-            <thead>
-              <tr>
-                <th onClick={() => handleSort("timestamp")}>Created</th>
-                <th onClick={() => handleSort("contentData.invoiceNumber")}>
-                  Invoice #
-                </th>
-                {currentTab === "All" && (
-                  <>
-                    <th onClick={() => handleSort("payee.value")}>Payee</th>
-                    <th onClick={() => handleSort("payer.value")}>Payer</th>
-                  </>
-                )}
-                {currentTab !== "All" && (
-                  <th
-                    onClick={() =>
-                      handleSort(
-                        currentTab === "Pay" ? "payee.value" : "payer.value"
-                      )
-                    }
-                  >
-                    {currentTab === "Pay" ? "Payee" : "Payer"}
+          <div className="overflow-x-auto ">
+            <table className="min-w-full bg-white">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th onClick={() => handleSort("timestamp")}>Created</th>
+                  <th onClick={() => handleSort("contentData.invoiceNumber")}>
+                    Invoice #
                   </th>
-                )}
-                <th onClick={() => handleSort("expectedAmount")}>
-                  Expected Amount
-                </th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {paginatedRequests.map((request, index) => (
-                <tr key={index}>
-                  <td>
-                    {new Date(request.timestamp * 1000).toLocaleDateString()}
-                  </td>
-                  <td>{request.contentData?.invoiceNumber || "-"}</td>
                   {currentTab === "All" && (
                     <>
-                      <td>{truncateAddress(request.payee?.value || "")}</td>
-                      <td>{truncateAddress(request.payer?.value || "")}</td>
+                      <th onClick={() => handleSort("payee.value")}>Payee</th>
+                      <th onClick={() => handleSort("payer.value")}>Payer</th>
                     </>
                   )}
                   {currentTab !== "All" && (
-                    <td>
-                      {truncateAddress(
-                        currentTab === "Pay"
-                          ? request.payee?.value || ""
-                          : request.payer?.value || ""
-                      )}
-                    </td>
+                    <th
+                      onClick={() =>
+                        handleSort(
+                          currentTab === "Pay" ? "payee.value" : "payer.value"
+                        )
+                      }
+                    >
+                      {currentTab === "Pay" ? "Payee" : "Payer"}
+                    </th>
                   )}
-                  <td>
-                    {formatUnits(
-                      BigInt(request.expectedAmount),
-                      currencyManager.fromAddress(request.currencyInfo.value)
-                        ?.decimals || 18
-                    )}{" "}
-                    {
-                      currencyManager.fromAddress(request.currencyInfo.value)
-                        ?.symbol
-                    }
-                  </td>
-                  <td>{request.state}</td>
+                  <th onClick={() => handleSort("expectedAmount")}>
+                    Expected Amount
+                  </th>
+                  <th>Status</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {paginatedRequests.map((request, index) => (
+                  <tr key={index} className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}>
+                    <td>
+                      {new Date(request.timestamp * 1000).toLocaleDateString()}
+                    </td>
+                    <td>{request.contentData?.invoiceNumber || "-"}</td>
+                    {currentTab === "All" && (
+                      <>
+                        <td>{truncateAddress(request.payee?.value || "")}</td>
+                        <td>{truncateAddress(request.payer?.value || "")}</td>
+                      </>
+                    )}
+                    {currentTab !== "All" && (
+                      <td>
+                        {truncateAddress(
+                          currentTab === "Pay"
+                            ? request.payee?.value || ""
+                            : request.payer?.value || ""
+                        )}
+                      </td>
+                    )}
+                    <td>
+                      {formatUnits(
+                        BigInt(request.expectedAmount),
+                        currencyManager.fromAddress(request.currencyInfo.value)
+                          ?.decimals || 18
+                      )}{" "}
+                      {
+                        currencyManager.fromAddress(request.currencyInfo.value)
+                          ?.symbol
+                      }
+                    </td>
+                    <td>{request.state}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
-          <div className="mt-4 flex justify-between items-center">
+          <div className="mt-6 flex justify-between items-center">
             <Button
               text="Previous"
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
+              className="px-4 py-2 bg-blue-500 text-white rounded-md disabled:opacity-50"
             />
-            <span>
+            <span className="text-sm">
               Page {currentPage} of {totalPages}
             </span>
             <Button
@@ -216,6 +216,7 @@ const InvoiceDashboard = () => {
                 setCurrentPage((prev) => Math.min(prev + 1, totalPages))
               }
               disabled={currentPage === totalPages}
+              className="px-4 py-2 bg-blue-500 text-white rounded-md disabled:opacity-50"
             />
           </div>
         </>

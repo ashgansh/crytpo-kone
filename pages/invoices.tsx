@@ -5,8 +5,8 @@ import InvoiceDashboard from "@/components/dashboard";
 const InvoicesPage = () => {
   return (
     <div className="container mx-auto">
-      <InvoiceSection />
       <InvoiceDashboard />
+      <InvoiceSection />
     </div>
   );
 };
