@@ -1,89 +1,126 @@
-# Request Invoicing (Invoicing Template)
+# Kone - Financial OS for EU Crypto Freelancers
 
-A simple invoicing template for creating, paying, and viewing requests in Request Network.
+A comprehensive financial management system tailored for crypto freelancers, offering tools for invoice management, payment tracking, and seamless crypto transactions.
 
-Built with:
+## Features
 
-- [Next.js](https://nextjs.org/)
-- [React](https://reactjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
+- Create Invoices
+- Gnosis Pay integration for crypto-backed card payments
+- Monerium integration for IBAN accounts and SEPA transfers
+- Yield earning features with sDAI
+
+## Tech Stack
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Request Network API
+- Gnosis Pay API (planned)
+- Monerium API (planned)
+
+## Getting Started
+
+1. Clone the repository:
+2. Install dependencies:
+   ```
+   npm install
+   ```
+3. Set up environment variables:
+   - Copy `.env.example` to `.env.local`
+   - Fill in the required values
+4. Run the development server:
+   ```
+   npm run dev
+   ```
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+
+
+## Key Components
+
+- `CustomCreateInvoice`: Custom invoice creation form
+- `InvoiceList`: Invoice management and display
+- `Navbar`: Navigation component
+- `MinimalistFinanceDashboard`: Main dashboard layout
+
+## Deployment
+
+GitHub Actions workflows are set up for deploying to staging and production environments:
+
+- Staging: Triggered on push to `main` branch
+- Production: Triggered on release publication or manually
+
+## TODO
+
+- [ ] Complete Gnosis Pay integration for card payments
+- [ ] Finalize Monerium integration for IBAN account management
+- [ ] Implement sDAI yield earning functionality
+- [ ] Enhance transaction history with advanced filtering
+- [ ] Add comprehensive analytics and reporting tools
+- [ ] Implement multi-language support
+- [ ] Set up automated testing suite
+
+## Contributing
+
+We welcome contributions! Please follow these steps:
+
+1. Fork the repository
+2. Create your feature branch: `git checkout -b feature/AmazingFeature`
+3. Commit your changes: `git commit -m 'Add some AmazingFeature'`
+4. Push to the branch: `git push origin feature/AmazingFeature`
+5. Open a pull request
+
+## License
+
+[MIT License](https://opensource.org/licenses/MIT)
+
+## Acknowledgements
+
 - [Request Network](https://request.network/)
-- [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
-
-## Install
-
-```
-npm install
-```
-
-## Run
+- [Gnosis Pay](https://www.gnosis.io/)
+- [Monerium](https://monerium.com/)
+- [Web3-Onboard](https://onboard.blocknative.com/)
 
 ```
-npm run start
-```
 
-## Develop
+This README provides a comprehensive overview of your project, including features, tech stack, setup instructions, project structure, deployment information, TODOs, contribution guidelines, and acknowledgements. Feel free to adjust any details to better match your specific project needs before adding it to your repository.
+6. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-```
-cp .env.example .env.local
-npm run dev
-```
 
-## Deploy
 
-We deploy to an [EasyPanel](https://easypanel.io/) server using Github Actions and [Heroku Buildpacks](https://devcenter.heroku.com/articles/buildpacks). You could easily deploy to Vercel, Netlify, or any other platform.
+## Key Components
 
-- [deploy-to-staging.yml](/.github/workflows/deploy-to-staging.yml) - Deploy to Staging on push to `main` branch.
-- [deploy-to-production.yml](/.github/workflows/deploy-to-production.yml) - Deploy to Production on release published in Github.
+- `CustomCreateInvoice`: Custom invoice creation form
+- `InvoiceList`: Invoice management and display
+- `Navbar`: Navigation component
+- `MinimalistFinanceDashboard`: Main dashboard layout
 
-## Environment Variables
+## TODO
 
-Before deploying, ensure you have created a `.env` or `.env.local` file in the root of your project. Below is a list of available environment variables. You can also take a look at the [.env.example](./.env.example) file for reference.
+- [ ] Migrate to nextjs app router
+- [ ] Complete Gnosis Pay integration for card payments
+- [ ] Finalize Monerium integration for IBAN account management
+- [ ] Implement sDAI yield earning functionality
+- [ ] Enhance transaction history with advanced filtering
+- [ ] Set up automated testing suite
 
-> **:warning: WARNING:** The default `PAYMENTS_SUBGRAPH_URL`s are rate-limited and should be replaced with your own subgraph URLs.
+## Contributing
 
-| Variable Name                                  | Description                          | Required |
-| ---------------------------------------------- | ------------------------------------ | -------- |
-| NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID          | Your Wallet Connect Project ID       | ✅       |
-| NEXT_PUBLIC_SUPPORT_EMAIL                      | Support email address                | ✅       |
-| NEXT_PUBLIC_APP_URL                            | The application URL                  | ✅       |
-| NEXT_PUBLIC_RPC_URL_ETHEREUM                   | RPC URL for Ethereum                 | ✅       |
-| NEXT_PUBLIC_RPC_URL_POLYGON                    | RPC URL for Polygon                  | ✅       |
-| NEXT_PUBLIC_RPC_URL_SEPOLIA                    | RPC URL for Sepolia                  | ✅       |
-| NEXT_PUBLIC_PAYMENTS_SUBGRAPH_URL_ARBITRUM_ONE | Subgraph URL for Arbitrum One        | ✅       |
-| NEXT_PUBLIC_PAYMENTS_SUBGRAPH_URL_AVALANCHE    | Subgraph URL for Avalanche           | ✅       |
-| NEXT_PUBLIC_PAYMENTS_SUBGRAPH_URL_BASE         | Subgraph URL for Base                | ✅       |
-| NEXT_PUBLIC_PAYMENTS_SUBGRAPH_URL_BSC          | Subgraph URL for Binance Smart Chain | ✅       |
-| NEXT_PUBLIC_PAYMENTS_SUBGRAPH_URL_CELO         | Subgraph URL for Celo                | ✅       |
-| NEXT_PUBLIC_PAYMENTS_SUBGRAPH_URL_CORE         | Subgraph URL for Core                | ✅       |
-| NEXT_PUBLIC_PAYMENTS_SUBGRAPH_URL_FANTOM       | Subgraph URL for Fantom              | ✅       |
-| NEXT_PUBLIC_PAYMENTS_SUBGRAPH_URL_FUSE         | Subgraph URL for Fuse                | ✅       |
-| NEXT_PUBLIC_PAYMENTS_SUBGRAPH_URL_MAINNET      | Subgraph URL for Mainnet             | ✅       |
-| NEXT_PUBLIC_PAYMENTS_SUBGRAPH_URL_MATIC        | Subgraph URL for Matic               | ✅       |
-| NEXT_PUBLIC_PAYMENTS_SUBGRAPH_URL_MOONBEAM     | Subgraph URL for Moonbeam            | ✅       |
-| NEXT_PUBLIC_PAYMENTS_SUBGRAPH_URL_NEAR         | Subgraph URL for Near                | ✅       |
-| NEXT_PUBLIC_PAYMENTS_SUBGRAPH_URL_NEAR_TESTNET | Subgraph URL for Near Testnet        | ✅       |
-| NEXT_PUBLIC_PAYMENTS_SUBGRAPH_URL_OPTIMISM     | Subgraph URL for Optimism            | ✅       |
-| NEXT_PUBLIC_PAYMENTS_SUBGRAPH_URL_RONIN        | Subgraph URL for Ronin               | ✅       |
-| NEXT_PUBLIC_PAYMENTS_SUBGRAPH_URL_SEPOLIA      | Subgraph URL for Sepolia             | ✅       |
-| NEXT_PUBLIC_PAYMENTS_SUBGRAPH_URL_TOMBCHAIN    | Subgraph URL for Tombchain           | ✅       |
-| NEXT_PUBLIC_PAYMENTS_SUBGRAPH_URL_XDAI         | Subgraph URL for xDai                | ✅       |
-| NEXT_PUBLIC_PAYMENTS_SUBGRAPH_URL_ZKSYNCERA    | Subgraph URL for ZkSyncEra           | ✅       |
+We welcome contributions! Please follow these steps:
 
-## Configuration
+1. Fork the repository
+2. Create your feature branch: `git checkout -b feature/AmazingFeature`
+3. Commit your changes: `git commit -m 'Add some AmazingFeature'`
+4. Push to the branch: `git push origin feature/AmazingFeature`
+5. Open a pull request
 
-In your next.config.js file, ensure you have the following configuration:
+## License
 
-```javascript
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: false,
-};
+[MIT License](https://opensource.org/licenses/MIT)
 
-export default nextConfig;
-```
+## Acknowledgements
 
-#### Explanation
-
-This configuration ensures that the Svelte web components render correctly. The swcMinify: false setting is crucial because Svelte web components and their rendering nature can sometimes conflict with aggressive minification processes. Disabling SWC minification helps prevent potential issues with web component rendering.
+- [Request Network](https://request.network/)
+- [Gnosis Pay](https://www.gnosis.io/)
+- [Monerium](https://monerium.com/)
