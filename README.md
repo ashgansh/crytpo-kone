@@ -1,6 +1,10 @@
 # Kone - Financial OS for EU Crypto Freelancers
 
-A comprehensive financial management system tailored for crypto freelancers, offering tools for invoice management, payment tracking, and seamless crypto transactions.
+kone provides you with one interface to easily use battle-tested crypto infrastructure to manage all your crypto finances.
+
+Issue invoices, get paid, and spend in crypto
+- all while staying compliant.
+
 
 ## Features
 
