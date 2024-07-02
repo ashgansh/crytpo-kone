@@ -6,16 +6,13 @@ interface ButtonProps {
   onClick?: () => void;
   disabled?: boolean;
   className?: string;
-  icon?: {
-    class: string;
-    style: React.CSSProperties;
-  };
+  icon?: React.ReactNode;
   type?: "button" | "submit" | "reset";
 }
 
 const Button = ({
   text,
-  color = "bg-green",
+  color = "bg-transparent",
   onClick,
   disabled = false,
   className = "",
@@ -27,9 +24,9 @@ const Button = ({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`flex items-center gap-[10px] disabled:cursor-not-allowed disabled:bg-grey disabled:text-dark-grey text-white rounded-[8px] hover:bg-dark-green transition-all text-[14px] px-[10px] tablet:px-[28px] py-[8px]" ${className} ${color}`}
+      className={`border  flex items-center gap-[10px] disabled:cursor-not-allowed disabled:bg-grey disabled:text-dark-grey hover:bg-gray-100 transition-all text-[14px] px-[10px] tablet:px-[28px] py-[8px]" ${className} ${color}`}
     >
-      {icon && <i className={icon.class} style={icon.style}></i>}
+      {icon}
       {text}
     </button>
   );

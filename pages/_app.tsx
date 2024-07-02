@@ -5,6 +5,7 @@ import Navbar from "@/components/common/Navbar";
 import { Provider } from "@/utils/context";
 import { init, Web3OnboardProvider } from "@web3-onboard/react";
 import { onboardConfig } from "../utils/connectWallet";
+import { Toaster } from "react-hot-toast";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -24,6 +25,8 @@ export default function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </Provider>
       </Web3OnboardProvider>
+      <Toaster position="top-right" />
+
     </div>
   );
 }
