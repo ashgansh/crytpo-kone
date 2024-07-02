@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  ReactNode,
-  useEffect,
-} from "react";
+import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import { WalletState } from "@web3-onboard/core";
 import { useConnectWallet } from "@web3-onboard/react";
 import { initializeRequestNetwork } from "./initializeRN";
@@ -19,9 +13,7 @@ const Context = createContext<ContextType | undefined>(undefined);
 
 export const Provider = ({ children }: { children: ReactNode }) => {
   const [{ wallet }] = useConnectWallet();
-  const [requestNetwork, setRequestNetwork] = useState<RequestNetwork | null>(
-    null
-  );
+  const [requestNetwork, setRequestNetwork] = useState<RequestNetwork | null>(null);
 
   useEffect(() => {
     if (wallet) {
