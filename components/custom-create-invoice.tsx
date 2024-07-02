@@ -73,7 +73,7 @@ const CustomCreateInvoice = () => {
   };
 
   return (
-    <div className="text-gray-800 p-6 font-sans">
+    <div className="text-gray-800 font-sans">
       <Toaster position="top-right" />
       <Card className="mb-8">
         <div className="border-b-2 border-gray-300 p-4 flex justify-between items-center bg-yellow-100 rounded-t-md">

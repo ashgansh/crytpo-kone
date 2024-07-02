@@ -4,7 +4,7 @@ import InvoiceList from "@/components/invoice-list";
 
 const InvoicesPage = () => {
   return (
-    <div className="container mx-auto p-4">
+    <div className="flex justify-between items-center border-b border-gray-300 pb-4 max-w-7xl mx-auto pt-4">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div>
           <CustomCreateInvoice />
